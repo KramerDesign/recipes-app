@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import './App.css'
 import Recipe from './Recipe'
+import './App.css'
 
 const App = () => {
   const APP_ID = '931104f1'
-  const APP_KEY = 'ba5e881dfdf7e4eeb0017ec5ba893751'
+  const APP_KEY = '83d7f90eed5654eceaa6dfc48a669c62'
 
   const [recipes, setRecipes] = useState([])
   const [search, setSearch] = useState('')
@@ -16,7 +16,7 @@ const App = () => {
 
   const getRecipes = async () => {
     const response = await fetch(
-      `https://api.edamam.com/search?q={query}&app_id=${APP_ID}&app_key=${APP_KEY}`
+      `https://cors-anywhere.herokuapp.com/https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`
     )
     const data = await response.json()
     setRecipes(data.hits)
@@ -28,6 +28,7 @@ const App = () => {
   const getSearch = (e) => {
     e.preventDefault()
     setQuery(search)
+    setSearch('')
   }
   return (
     <div className="App">
